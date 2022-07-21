@@ -1,4 +1,4 @@
-# Eatiplaner Plan Service
+# Eatiplaner Assets Service
 
 ## Requirements
 
