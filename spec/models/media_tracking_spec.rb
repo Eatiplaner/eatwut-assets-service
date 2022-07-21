@@ -21,11 +21,7 @@ RSpec.describe MediaTracking do
       end
 
       context 'media_type' do
-        it { is_expected.to allow_value('image').for(:media_type) }
-        it { is_expected.to allow_value('video').for(:media_type) }
-        it { is_expected.to allow_value('document').for(:media_type) }
-
-        it { is_expected.not_to allow_value('3d').for(:media_type) }
+        it { is_expected.to allow_value('avatar').for(:media_type) }
       end
     end
   end

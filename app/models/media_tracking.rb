@@ -9,7 +9,7 @@ class MediaTracking < ApplicationRecord
   )
 
   RESOURCE_TYPES = %w[user plan]
-  MEDIA_TYPES = %w[image video document]
+  MEDIA_TYPES = %w[avatar]
 
   validates :media_type, :resource_type, :resource_id, :s3_id, presence: true
 
