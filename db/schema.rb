@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_134508) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_21_074839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "media_trackings", force: :cascade do |t|
+    t.string "media_type", null: false
+    t.string "resource_type", null: false
+    t.string "resource_id", null: false
+    t.string "s3_id", null: false
+    t.string "status", default: "pending", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id"], name: "index_media_trackings_on_resource_type_and_resource_id"
+    t.index ["s3_id"], name: "index_media_trackings_on_s3_id", unique: true
+  end
+
 end
