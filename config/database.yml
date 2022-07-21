@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: eatiplaner-assets-service
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: eatiplaner-assets-service-test
+
+production:
+  <<: *default
+  host: <%= Rails.application.credentials.database.try(:[], 'host') %>
+  username: <%= Rails.application.credentials.database.try(:[], 'user') %>
+  password: <%= Rails.application.credentials.database.try(:[], 'password') %>
+  database: <%= Rails.application.credentials.database.try(:[], 'database') %>
