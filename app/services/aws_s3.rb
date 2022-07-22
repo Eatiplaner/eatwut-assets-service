@@ -1,5 +1,5 @@
 class AwsS3
-  def presigned_url(resource_id:, resource_type:, file_name:, media_type:)
+  def presigned_url_and_key(resource_id:, resource_type:, file_name:, media_type:)
     return unless file_name
     file_name = file_name.gsub(/\s+/, '') # remove whitespace from the file name.
 

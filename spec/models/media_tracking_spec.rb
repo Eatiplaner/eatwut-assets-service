@@ -5,11 +5,12 @@ RSpec.describe MediaTracking do
     it { is_expected.to validate_presence_of(:media_type) }
     it { is_expected.to validate_presence_of(:resource_type) }
     it { is_expected.to validate_presence_of(:resource_id) }
+    it { is_expected.to validate_presence_of(:access_url) }
 
     describe 'uniqueness' do
-      subject { build(:media_tracking, s3_id: '1232abd') }
+      subject { build(:media_tracking, s3_key: '1232abd') }
 
-      it { is_expected.to validate_uniqueness_of(:s3_id) }
+      it { is_expected.to validate_uniqueness_of(:s3_key) }
     end
 
     describe 'acceptance' do
@@ -29,7 +30,6 @@ RSpec.describe MediaTracking do
   describe 'settings' do
     it do
       values = {
-        pending: 'pending',
         inprogress: 'inprogress',
         completed: 'completed',
       }
