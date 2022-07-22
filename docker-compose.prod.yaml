@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1
+    volumes:
+      - cache:/data
+
   plan:
     restart: always
     build: .
@@ -9,4 +18,11 @@ services:
       - "9080:9080"
     environment:
       RAILS_ENV: production
+      REDIS_URL_CACHING: redis://cache:6379
     platform: linux/x86_64
+    depends_on:
+      - cache
+
+volumes:
+  cache:
+    driver: local

@@ -5,3 +5,4 @@ S3_CLIENT = Aws::S3::Client.new(
 )
 
 S3_BUCKET = Rails.application.credentials.aws.fetch(:bucket_name)
+EXPIRED_TIME_PRESIGNED_URL = Rails.application.credentials.aws.fetch(:expired_time_presigned_url)

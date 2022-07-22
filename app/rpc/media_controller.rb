@@ -10,11 +10,13 @@ class MediaController < Gruf::Controllers::Base
     presigned_url = presigned_url_and_key[0]
     key = presigned_url_and_key[1]
 
-    MediaTracking.create(
+    media_tracking = MediaTracking.create(
       **media_payload,
       s3_key: key,
       access_url: parse_access_url(presigned_url)
     )
+
+    VerifyMediaTrackingUploadStatus.set(wait: EXPIRED_TIME_PRESIGNED_URL.minutes).perform_later(media_tracking.id)
 
     Asset::GenerateUrlResp.new(
       presigned_url:,

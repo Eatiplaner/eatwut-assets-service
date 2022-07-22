@@ -6,6 +6,16 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1
+    volumes:
+      - cache:/data
+
   plan:
     build: .
     volumes:
@@ -16,6 +26,12 @@ services:
       DATABASE_PASSWORD: password
       DATABASE_USER: postgres
       DATABASE_HOST: db
+      REDIS_URL_CACHING: redis://cache:6379
     platform: linux/x86_64
     depends_on:
+      - cache
       - db
+
+volumes:
+  cache:
+    driver: local

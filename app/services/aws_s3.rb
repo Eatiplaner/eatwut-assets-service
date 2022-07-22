@@ -12,7 +12,7 @@ class AwsS3
         :put_object,
         bucket: S3_BUCKET,
         key:,
-        expires_in: 60 * 5, # 5 minutes
+        expires_in: 60 * EXPIRED_TIME_PRESIGNED_URL,
       ),
       key
     ]
