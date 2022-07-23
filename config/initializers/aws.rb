@@ -1,3 +1,5 @@
+return if Rails.env.test?
+
 S3_CLIENT = Aws::S3::Client.new(
   region: Rails.application.credentials.aws.fetch(:region),
   access_key_id:        Rails.application.credentials.aws.fetch(:access_key_id),
