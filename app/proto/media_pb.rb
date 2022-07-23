@@ -10,6 +10,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :resource_type, :string, 2
       optional :media_type, :string, 3
       optional :file_name, :string, 4
+      optional :storage_type, :string, 5
     end
     add_message "asset.GetMediaReq" do
       optional :resource_id, :uint32, 1
@@ -37,6 +38,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :s3_key, :string, 5
       optional :access_url, :string, 6
       optional :status, :string, 7
+      optional :storage_type, :string, 8
     end
     add_message "asset.GetMediaResp" do
       repeated :data, :message, 1, "asset.MediaTracking"

@@ -36,5 +36,15 @@ RSpec.describe MediaTracking do
 
       expect(subject).to define_enum_for(:status).with_values(values).backed_by_column_of_type(:string).with_prefix
     end
+
+    it do
+      values = {
+        single: 'single',
+        multiple: 'multiple',
+      }
+
+      expect(subject).to define_enum_for(:storage_type)\
+        .with_values(values).backed_by_column_of_type(:string).with_prefix
+    end
   end
 end

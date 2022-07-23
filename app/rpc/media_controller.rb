@@ -14,6 +14,7 @@ class MediaController < BaseController
 
     media_tracking = MediaTracking.create(
       **media_payload,
+      storage_type: request.message.storage_type,
       s3_key: key,
       access_url: parse_access_url(presigned_url)
     )
@@ -30,7 +31,7 @@ class MediaController < BaseController
   end
 
   def get_media
-    records = MediaTracking.where(**request.message.to_h)
+    records = MediaTracking.where(**request.message.to_h.merge(status: MediaTracking.statuses[:completed]))
 
     Asset::GetMediaResp.new(
       data: records.map { |record| Asset::MediaTracking.new(**record.rpc_data) }
@@ -58,7 +59,10 @@ class MediaController < BaseController
   def acknowledge_uploaded
     key = request.message.key
 
-    MediaTracking.find_by!(s3_key: key).update!(status: MediaTracking.statuses[:completed])
+    media_tracking = MediaTracking.find_by!(s3_key: key)
+    media_tracking.update!(status: MediaTracking.statuses[:completed])
+
+    media_tracking.remove_old_single_medias if media_tracking.storage_type_single?
 
     Asset::AcknowledgeResp.new(
       success: true
