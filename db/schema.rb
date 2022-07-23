@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_074839) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_23_160010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_074839) do
     t.string "status", default: "inprogress", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["resource_type", "resource_id", "media_type"], name: "index_unique_resource_on_media_type", unique: true
+    t.index ["resource_type", "resource_id", "media_type", "s3_key"], name: "index_unique_resource_on_media_type", unique: true
     t.index ["s3_key"], name: "index_media_trackings_on_s3_key", unique: true
   end
 
