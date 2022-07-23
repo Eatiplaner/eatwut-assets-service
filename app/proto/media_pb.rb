@@ -29,7 +29,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "asset.AcknowledgeResp" do
       optional :success, :bool, 1
     end
-    add_message "asset.GetMediaResp" do
+    add_message "asset.MediaTracking" do
       optional :id, :uint32, 1
       optional :resource_id, :uint32, 2
       optional :resource_type, :string, 3
@@ -37,6 +37,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :s3_key, :string, 5
       optional :access_url, :string, 6
       optional :status, :string, 7
+    end
+    add_message "asset.GetMediaResp" do
+      repeated :data, :message, 1, "asset.MediaTracking"
     end
   end
 end
@@ -48,5 +51,6 @@ module Asset
   AcknowledgeReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("asset.AcknowledgeReq").msgclass
   GenerateUrlResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("asset.GenerateUrlResp").msgclass
   AcknowledgeResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("asset.AcknowledgeResp").msgclass
+  MediaTracking = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("asset.MediaTracking").msgclass
   GetMediaResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("asset.GetMediaResp").msgclass
 end

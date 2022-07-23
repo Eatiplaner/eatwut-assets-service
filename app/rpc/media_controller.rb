@@ -1,5 +1,7 @@
-class MediaController < Gruf::Controllers::Base
+class MediaController < BaseController
   bind Asset::MediaService::Service
+
+  before_action :authorize_request!
 
   def generate_presigned_url
     presigned_url_and_key = aws_s3.presigned_url_and_key(
@@ -28,8 +30,11 @@ class MediaController < Gruf::Controllers::Base
   end
 
   def get_media
-    media_tracking = MediaTracking.find_by!(**request.message.to_h)
-    Asset::GetMediaResp.new(**media_tracking.rpc_data)
+    records = MediaTracking.where(**request.message.to_h)
+
+    Asset::GetMediaResp.new(
+      data: records.map { |record| Asset::MediaTracking.new(**record.rpc_data) }
+    )
   rescue StandardError => e
     set_debug_info(e.message, e.backtrace[0..4])
     fail!(:internal, :internal, "ERROR: #{e.message}")
