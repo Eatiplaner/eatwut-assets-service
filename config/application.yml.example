@@ -2,6 +2,9 @@
 DATABASE_USER: postgres
 DATABASE_PASSWORD: password
 DATABASE_HOST: localhost
+RPC_CLIENT_HOST: localhost
+RPC_CLIENT_PORT: 9080
+RPC_SERVER_PORT: 8081
 
 # Production
 RAILS_MASTER_KEY: abcxyz
