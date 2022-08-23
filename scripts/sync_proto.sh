@@ -151,9 +151,9 @@ parse_name() {
 
 get_dependencies_list() {
   if [ $mode == "local" ];then
-    echo $(yq eval '.dependencies' $proto_yaml_local_file)
+    echo "$(yq eval '.dependencies' $proto_yaml_local_file)"
   else
-    echo $(yq eval '.dependencies' $proto_yaml_file)
+    echo "$(yq eval '.dependencies' $proto_yaml_file)"
   fi
 }
 
