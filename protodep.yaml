@@ -1,9 +1,9 @@
 source: Eatiplan-Project/eatiplan-grpc-proto
 branch: main
 outpb: app/proto
+outdir: app/proto
 token_key: GH_PROTO_REPO_TOKEN
 dependencies:
   - asset/media
+  - auth/jwt
 command: grpc_tools_ruby_protoc --ruby_out=. --grpc_out=. $outpb/$dependency.proto
-
-

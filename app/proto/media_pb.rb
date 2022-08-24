@@ -6,14 +6,14 @@ require 'google/protobuf'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("app/proto/media.proto", syntax: :proto3) do
     add_message "asset.GenerateUrlReq" do
-      optional :resource_id, :uint32, 1
+      optional :resource_id, :uint64, 1
       optional :resource_type, :string, 2
       optional :media_type, :string, 3
       optional :file_name, :string, 4
       optional :storage_type, :string, 5
     end
     add_message "asset.GetMediaReq" do
-      optional :resource_id, :uint32, 1
+      optional :resource_id, :uint64, 1
       optional :resource_type, :string, 2
       optional :media_type, :string, 3
     end
@@ -31,8 +31,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :success, :bool, 1
     end
     add_message "asset.MediaTracking" do
-      optional :id, :uint32, 1
-      optional :resource_id, :uint32, 2
+      optional :id, :uint64, 1
+      optional :resource_id, :uint64, 2
       optional :resource_type, :string, 3
       optional :media_type, :string, 4
       optional :s3_key, :string, 5
