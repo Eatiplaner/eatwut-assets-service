@@ -6,14 +6,14 @@ default: &default
   host: <%= ENV['DATABASE_HOST'] %>
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  database: eatiplaner-assets-service
+  database: eatwut-assets-service
 
 development:
   <<: *default
 
 test:
   <<: *default
-  database: eatiplaner-assets-service-test
+  database: eatwut-assets-service-test
 
 production:
   <<: *default

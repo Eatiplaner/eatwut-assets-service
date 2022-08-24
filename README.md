@@ -1,4 +1,4 @@
-# Eatiplaner Assets Service
+# Eatwut Assets Service
 
 ## Requirements
 
